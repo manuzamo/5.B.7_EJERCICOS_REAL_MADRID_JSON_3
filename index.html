@@ -3,35 +3,64 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lista Jugadores Real Madrid</title>
+    <title>Jugadores Real Madrid</title>
+
+    <style>
+
+        div{
+            border:1px solid black;
+            box-shadow:3px 3px black;
+            padding:10px;
+        }
+
+        img{
+            width:200px;
+        }
+
+        #contenedor{
+            display:flex;
+            justify-content:space-between;
+            padding:10px;
+            gap:20px;
+        }
+
+    </style>
+
 </head>
+
 <body>
 
-    <h1>Lista Jugadores R.Madrid</h1>
-
-    <button id="boton">Cargar Lista Jugadores</button>
-
-    <ol id="lista-jugadores"></ol>
+    <h1>Jugadores del Real Madrid</h1>
+    <div id="contenedor"></div>
 
     <script>
+        fetch("jugadores.json")
+        .then(response => response.json())
+        .then(datos => {
+            let jugadores = datos.jugadores;
+            for(let i = 0; i < jugadores.length; i++){
+                let jugador = jugadores[i];
+                let nuevaTarjeta = document.createElement("div");
+              
+                let tituloJugador = document.createElement("h1");
+                tituloJugador.innerHTML = jugador.nombre;
+                tituloJugador.setAttribute("style","text-align:center; font-family:arial");
+                nuevaTarjeta.appendChild(tituloJugador);
+                
+                let tituloEdad = document.createElement("h2");
+                tituloEdad.innerHTML = "Edad: " + jugador.edad;
+                nuevaTarjeta.appendChild(tituloEdad);
 
-        document.getElementById("boton").addEventListener("click", cargarLista);
-        function cargarLista(){
-            document.getElementById("lista-jugadores").innerHTML = "";
+                let tituloFicha = document.createElement("h3");
+                tituloFicha.innerHTML = "Ficha: " + jugador.ficha;
+                nuevaTarjeta.appendChild(tituloFicha);
 
-            fetch("jugadores.json")
-            .then(response => response.json())
-            .then(datos => {
+                let nuevaFoto = document.createElement("img");
+                nuevaFoto.src = jugador.foto;
+                nuevaTarjeta.appendChild(nuevaFoto);
 
-                let jugadores = datos.jugadores;
-                for(let i = 0; i < jugadores.length; i++){
-                    let nuevoLi = document.createElement("li");
-                    nuevoLi.innerHTML = jugadores[i];
-                    nuevoLi.setAttribute("style","color:purple");
-                    document.getElementById("lista-jugadores").appendChild(nuevoLi);
-                }
-            });
-        }
-    </script>
-</body>
-</html>
+                document.getElementById("contenedor").appendChild(nuevaTarjeta);
+
+            }
+
+        });

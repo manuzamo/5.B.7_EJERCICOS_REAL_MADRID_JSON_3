@@ -1,9 +1,28 @@
 {
     "jugadores": [
-        "Mbappé",
-        "Butragueño",
-        "Raúl",
-        "Zidane",
-        "Ronaldo"
+        {
+            "nombre": "Mbappe",
+            "edad": 28,
+            "ficha": 20000000,
+            "foto": "images/Mbappe.png"
+        },
+        {
+            "nombre": "Valverde",
+            "edad": 26,
+            "ficha": 189072513,
+            "foto": "images/Valverde.jpg"
+        },
+        {
+            "nombre": "Carvajal",
+            "edad": 34,
+            "ficha": 202351035,
+            "foto": "images/Carvajal.png"
+        },
+        {
+            "nombre": "Vinicius",
+            "edad": 27,
+            "ficha": 192351035,
+            "foto": "images/Vinicius.jpg"
+        }
     ]
 }
